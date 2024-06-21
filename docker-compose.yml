@@ -1,0 +1,57 @@
+version: "3"
+services:
+  chrome:
+    image: selenium/node-chrome:dev
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=10
+      - VNC_NO_PASSWORD=1
+
+  selenium-hub:
+    image: selenium/hub:latest
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+
+  db:
+    image: postgis/postgis:15-3.3
+    restart: "no"
+    environment:
+      - POSTGRESQL_PASSWORD=xd
+    ports: 
+      - 5434:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+    networks:
+      - gisnet
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    restart: "no"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: info@example.org
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_DEFAULT_ENHANCED_COOKIE_PROTECTION: "True"
+      PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 10
+    ports:
+      - 5480:80
+    networks:
+      - gisnet
+
+    volumes:
+      data:
+        name: data-postgis-data
+
+networks:
+  gisnet:
+    external:
+      name: gisnet
+
+
