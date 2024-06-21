@@ -2,3 +2,9 @@ logs
 .env
 falto.py
 venv
+ELT/logs
+ETL\04_data_save.py
+ETL\log\
+ETL/05_Conexion_base_relacional.py
+ETL/05_relacional_sin_analisis.py
+ETL\06_flask.py
