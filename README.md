@@ -15,6 +15,17 @@
 
 
   Este proyecto es con finees de ESTUDIO, no se recomienda hacer uso de este como una veracidad. Y a su vez, no está permitido el uso de este en el ambiente comercial. *para más información lea License".
-
+- Archivo .env
+  Tienes que crear el archivo .env con los diferentes nobmres de bases de datos de esta manera:
+  MONGO_DB_RAW=Finca_inmuebles
+MONGO_DB_PRO=procesado
+MONGO_COLE_RAW_FINCA=indi_finca
+MONGO_COLE_RAW_HABI=habi_newera
+MONGO_COLE_PRO=inmuebles
+MONGO_COLE_localidad=con_localidad
+MONGO_COLE_PREPRO=pre-processed
+MONGO_COLE_enriched=enriched
+MONGO_COLE_analized_01=analized_01
+MONGO_COLE_con_score_base=con_score_base
 ## Próximas actualizaciones:
   Integracion de bases relacionales y query listas para las peticiones a un backend (end points con flask).
